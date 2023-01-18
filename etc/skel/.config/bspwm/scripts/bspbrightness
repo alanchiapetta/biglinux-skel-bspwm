@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+# Gerenciar Brilho
+
+# Icons
+iDIR='~/.config/bspwm/dunst-icons'
+
+# Graphics card
+CARD=`ls /sys/class/backlight | head -n 1`
+
+# Get brightness
+get_backlight() {
+	if [[ "$CARD" == *"intel_"* ]]; then
+		BNESS=`brightnessctl p | grep -o -E '([0-9]+)%' | cut -d "%" -f 1`
+		LIGHT=${BNESS%.*}
+	else
+		LIGHT=$(printf "%.0f\n" `light -G`)
+	fi
+	echo "${LIGHT}%"
+}
+
+# Get icons
+get_icon() {
+	backlight="$(get_backlight)"
+	current="${backlight%%%}"
+	if [[ ("$current" -ge "0") && ("$current" -le "20") ]]; then
+		icon="$iDIR"/brightness-20.png
+	elif [[ ("$current" -ge "20") && ("$current" -le "40") ]]; then
+		icon="$iDIR"/brightness-40.png
+	elif [[ ("$current" -ge "40") && ("$current" -le "60") ]]; then
+		icon="$iDIR"/brightness-60.png
+	elif [[ ("$current" -ge "60") && ("$current" -le "80") ]]; then
+		icon="$iDIR"/brightness-80.png
+	elif [[ ("$current" -ge "80") && ("$current" -le "100") ]]; then
+		icon="$iDIR"/brightness-100.png
+	fi
+}
+
+# Notifica 
+notify_bl() {
+	get_icon && dunstify -u low -h string:x-dunst-stack-tag:obbacklight -i "$icon" "Brilho : $(get_backlight)"
+}
+
+# Aumenta brilho
+inc_backlight() {
+	if [[ "$CARD" == *"intel_"* ]]; then
+		brightnessctl s 10%+ && notify_bl
+	else
+		light -A 5 && notify_bl
+	fi
+}
+
+# Diminui brilho
+dec_backlight() {
+	if [[ "$CARD" == *"intel_"* ]]; then
+		brightnessctl s 10%- && notify_bl
+	else
+		light -U 5 && notify_bl
+	fi
+}
+
+# Executar de acordo
+if [[ "$1" == "--get" ]]; then
+	get_backlight
+elif [[ "$1" == "--inc" ]]; then
+	inc_backlight
+elif [[ "$1" == "--dec" ]]; then
+	dec_backlight
+else
+	get_backlight
+fi
+

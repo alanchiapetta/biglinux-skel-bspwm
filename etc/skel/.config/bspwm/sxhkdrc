@@ -1,0 +1,172 @@
+
+##---------- Atalhos para BSPWM----------##
+
+# Terminal (alacritty)
+super + Return
+	bspterm
+
+# Terminal (floating)
+super + shift + Return
+	bspterm --float
+
+# Terminal (fullscreen)
+super + alt + Return
+	bspterm --full
+
+##---------- Rofi & Menus ----------##
+
+# Rofi (Launcher)
+alt + F1
+	~/.config/bspwm/rofi/bin/launcher
+
+# Rofi (Powermenu)
+super + x
+	~/.config/bspwm/rofi/bin/powermenu
+
+# Rofi (Screenshot)
+super + s
+	~/.config/bspwm/rofi/bin/screenshot
+
+# Rofi (Janelas abertas)
+super + w
+	rofi -show window
+
+# Dmenu
+super + d
+	dmenu_run
+
+##---------- Programas ----------##
+
+# Executar programas
+super + shift + {f,w,e,m}
+	{pcmanfm,firefox,gnome-text-editor -n,alacritty --class=cmus -e cmus}
+
+# Programas Cli
+ctrl + alt + {v,r,h}
+	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {nvim,ranger,htop}
+
+# Color Picker
+super + p
+	bspcolorpicker
+
+# Lockscreen
+ctrl + alt + l
+    betterlockscreen --lock dimblur
+
+##---------- Atalhos de Sistema ----------##
+
+# Tirar printscreen
+Print
+	bspscreenshot --now
+	
+# Tirar printscreen em 5 segundos
+alt + Print	
+	bspscreenshot --in5
+
+# Take screenshot in 10 second
+shift + Print	
+	bspscreenshot --in10
+
+# Take screenshot of active window
+ctrl + Print
+	bspscreenshot --win
+
+# Take screenshot of area
+super + Print
+	bspscreenshot --area
+
+# Controle de Brilho
+XF86MonBrightnessUp
+	bspbrightness --inc
+
+XF86MonBrightnessDown
+	bspbrightness --dec
+	
+# Controle de Volume 
+XF86Audio{RaiseVolume,LowerVolume}
+	bspvolume{ --inc, --dec}
+
+# Controle de Volume de Microfone
+XF86Audio{Mute,MicMute}
+	bspvolume{ --toggle, --toggle-mic}
+	
+# Music control
+XF86Audio{Next,Prev,Play,Stop}
+# MUDAR PARA CMUS
+
+##---------- Bspwm ----------##
+
+# Fechar Programa
+super + {_,shift + }c
+	bspc node -{c,k}
+
+#  Matar janela
+ctrl + alt + Escape
+    xkill
+
+#  Sair/Reiniciar BSPWM
+ctrl + shift + {q,r}
+	bspc {quit,wm -r}
+	
+#  Recarregar configurações de atalhos
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#  Trocar Áreas de Trabalho
+ctrl + alt + {Left,Right}
+	bspc desktop -f {prev.local,next.local}
+
+# Mudar foco de Área de Trabalho / enviar janela para outra Área de Trabalho
+super + {_,shift + }{1-9}
+	bspc {desktop -f,node -d} '^{1-9}' '--follow'
+super + 0
+	bspc desktop -f '^10'
+super + shift + 0
+	bspc node -d '^10' '--follow'
+
+#  Envia a janela para a Área de Trabalho do lado
+super + ctrl + shift + {Left,Right}
+	bspc node -d {prev,next} '--follow'
+
+#  Muda o foco da janela / Troca janelas de posição
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+#  Movimenta janelas flutuantes
+alt + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#  Expande as janelas
+super + control + {Left,Right,Up,Down}
+	bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+	
+# Encolhe as janelas 
+super + alt + {Left,Right,Up,Down}
+	bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
+
+# Divide janelas em horizontal, vertical ou cancela
+super + {h,v,q}
+	bspc node -p {east,south,cancel}
+
+# Pre-seleciona o tamanho da janela
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# Alterna layout (Tiled/Monocle)
+super + l
+	bspc desktop -l next
+
+# Alterna para Fullscreen
+super + f
+    bspc node -t "~"fullscreen
+
+# Alterna entre floating & tiled
+super + space
+    bspc node -t "~"{floating,tiled}
+
+
+# Muda o foco para a próxima janela (incluindo janelas flutuantes)
+alt + {_,shift + }Tab
+	bspc node -f {next.local,prev.local}
+
+##---------- EOF ----------##

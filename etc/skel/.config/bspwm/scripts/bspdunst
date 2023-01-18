@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Diretório do BSPWM
+DIR="$HOME/.config/bspwm"
+
+# Iniciar daemon do Dunst
+if [[ `pidof dunst` ]]; then
+	pkill dunst
+fi
+
+dunst -config "$DIR"/dunstrc &
