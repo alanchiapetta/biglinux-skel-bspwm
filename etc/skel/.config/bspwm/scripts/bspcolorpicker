@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+color=$(xcolor --format hex --preview-size 255 --scale 10)
+image=/tmp/${color}.png
+
+main() {
+	if [[ "$color" ]]; then
+		# copiar cor para área de transferência
+		echo $color | tr -d "\n" | xclip -selection clipboard
+		# gerar preview
+		convert -size 48x48 xc:"$color" ${image}
+		# notificar
+		dunstify -u low -h string:x-dunst-stack-tag:obcolorpicker -i ${image} "$color, Copiado para área de transferência."
+	fi
+}
+
+# rodar o script 
+main
