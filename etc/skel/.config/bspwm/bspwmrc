@@ -124,7 +124,7 @@ xfce4-power-manager &
 xsetroot -cursor_name left_ptr
 
 # Restaurar o Wallpaper
-nitrogen --restore &
+feh --bg-fill /usr/share/backgrounds/catppuccin-wallpapers/misc/spooky_spill.jpg
 
 # Iniciar scripts BSPWM
 bspcomp #Compositor Picom
