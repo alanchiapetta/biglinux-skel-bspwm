@@ -116,3 +116,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin:/usr/games:/sbin:$HOME/bin"
