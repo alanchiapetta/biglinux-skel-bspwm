@@ -68,7 +68,6 @@ bspc rule -a google-chrome desktop='^2' follow=on focus=on
 ## 4 > code 
 
 ## 5 > To-do 
-bspc rule -a firefox-webapp-notion-so desktop='^5' follow=on focus=on
 
 ## 6 > docs
 
