@@ -55,7 +55,7 @@ rdialog () {
 rofi -dmenu\
     -i\
     -no-fixed-num-lines\
-    -p "Tem certeza? s / n : "\
+    -p "Tem certeza? y / n : "\
     -theme "$ddir/confirm.rasi"
 }
 
