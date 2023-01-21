@@ -39,7 +39,7 @@ super + d
 
 # Executar programas
 super + shift + {f,w,e,m}
-	{pcmanfm,firefox,gnome-text-editor -n,alacritty --class=cmus -e cmus}
+	{pcmanfm,firefox,geany,alacritty --class=cmus -e cmus}
 
 # Programas Cli
 ctrl + alt + {v,r,h}

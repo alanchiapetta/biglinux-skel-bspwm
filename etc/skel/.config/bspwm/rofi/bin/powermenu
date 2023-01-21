@@ -5,11 +5,11 @@ uptime=$(uptime -p | sed -e 's/up //g')
 
 # Options
 if [[ "$DIR" == "powermenus" ]]; then
-	shutdown=""
-	reboot=""
-	lock=""
-	suspend=""
-	logout=""
+	shutdown=""
+	reboot=""
+	lock=""
+	suspend="󰤄"
+	logout="󰍃"
 	ddir="$HOME/.config/bspwm/rofi/config"
 else
 
@@ -20,11 +20,11 @@ else
 	if [[ "$layout" == "TRUE" ]]; then
   # Section 1
 
-		shutdown=""
-		reboot=""
-		lock=""
-		suspend=""
-		logout=""
+		shutdown=""
+		reboot=""
+		lock=""
+		suspend="󰤄"
+		logout="󰍃"
   # Section 2
 #		shutdown="襤"
 #		reboot="ﰇ"
@@ -35,11 +35,11 @@ else
 
 	else
   # Section 1
-		shutdown=" Shutdown"
-		reboot=" Restart"
-		lock=" Lock"
-		suspend=" Sleep"
-		logout=" Logout"
+		shutdown=" Shutdown"
+		reboot=" Restart"
+		lock=" Lock"
+		suspend="󰤄 Sleep"
+		logout="󰍃 Logout"
   # Section 2
 #		shutdown="襤Shutdown"
 #		reboot="ﰇ Restart"
@@ -55,7 +55,7 @@ rdialog () {
 rofi -dmenu\
     -i\
     -no-fixed-num-lines\
-    -p "Tem certeza? : "\
+    -p "Tem certeza? s / n : "\
     -theme "$ddir/confirm.rasi"
 }
 
@@ -71,7 +71,7 @@ chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-
 case $chosen in
     $shutdown)
 		ans=$(rdialog &)
-		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]] || [[$ans == "sim" ]] || [[$ans == "y" ]]; then
+		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]] || [[$ans == "sim" ]] || [[$ans == "s" ]]; then
 			systemctl poweroff
 		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]] || [[$ans == "não" ]]; then
 			exit
@@ -81,9 +81,9 @@ case $chosen in
         ;;
     $reboot)
 		ans=$(rdialog &)
-		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]] || [[$ans == "sim" ]] || [[$ans == "y" ]] || [[$ans == "s" ]]; then
 			systemctl reboot
-		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
+		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]] || [[$ans == "não" ]]; then
 			exit
         else
 			show_msg
@@ -94,10 +94,10 @@ case $chosen in
         ;;
     $suspend)
 		ans=$(rdialog &)
-		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]] || [[$ans == "sim" ]] || [[$ans == "y" ]] || [[$ans == "s" ]]; then
 			betterlockscreen -l dimblur
 			systemctl suspend
-		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
+		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]] || [[$ans == "não" ]]; then
 			exit
         else
 			show_msg
@@ -105,13 +105,12 @@ case $chosen in
         ;;
     $logout)
 		ans=$(rdialog &)
-		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+		if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]] || [[$ans == "sim" ]] || [[$ans == "y" ]] || [[$ans == "s" ]]; then
 			bspc quit
-		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
+		elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]] || [[$ans == "não" ]]; then
 			exit
         else
 			show_msg
         fi
         ;;
 esac
-

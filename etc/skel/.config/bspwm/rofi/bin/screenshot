@@ -16,14 +16,14 @@ if [[ "$layout" == "TRUE" ]]; then
 	screen=""
 	area=""
 	window="缾"
-	infive="靖"
-	inten="福"
+	infive="3s"
+	inten="10s"
 else
 	screen=" Capturar Tela"
 	area=" Capturar Área"
 	window="缾 Capturar Janela"
-	infive="靖 Print em 3s"
-	inten="福 Print em 10s"
+	infive="3s Print em 3s"
+	inten="10s Print em 10s"
 fi
 
 # Notify and view screenshot
