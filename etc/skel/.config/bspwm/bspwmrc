@@ -93,6 +93,7 @@ for i in ${floating[@]}; do
    bspc rule -a $i state=floating follow=on focus=on; done
 
 
+
 ## Autostart -------------------------------------------------#
 
 # Matar pacotes que estão em execução
@@ -130,3 +131,5 @@ bspcomp #Compositor Picom
 bspdunst #Notificações Dunst
 bspfloat & #Alacritty (Float, Normal e Fullscreen)
 
+#Atalhos
+bigbashview -w fixed -n "atalhos" -t gtk -s 900x900 $BSPDIR/atalhos/index.html & 

@@ -1,6 +1,10 @@
 
 ##---------- Atalhos para BSPWM----------##
 
+# Atalhos
+super + shift + k
+  bigbashview -w fixed -n "atalhos" -t gtk -s 900x900 ~/.config/bspwm/atalhos/index.html
+
 # Terminal (alacritty)
 super + Return
 	bspterm
@@ -42,8 +46,11 @@ super + shift + {f,w,e,m}
 	{pcmanfm,firefox,geany,alacritty --class=cmus -e cmus}
 
 # Programas Cli
-ctrl + alt + {v,r,h}
-	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {nvim,ranger,htop}
+ctrl + alt + {r,h}
+	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {ranger,htop}
+
+ctrl + alt + v 
+  alacritty --class=nvim --config-file ~/.config/bspwm/alacritty/alacritty.yml -e nvim
 
 # Color Picker
 super + p
