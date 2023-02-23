@@ -124,7 +124,8 @@ xfce4-power-manager &
 xsetroot -cursor_name left_ptr
 
 # Restaurar o Wallpaper
-feh --bg-fill /usr/share/backgrounds/biglinux-catppuccin.jpg
+# feh --bg-fill /usr/share/backgrounds/biglinux-catppuccin.jpg
+nitrogen --restore
 
 # Iniciar scripts BSPWM
 bspcomp #Compositor Picom
