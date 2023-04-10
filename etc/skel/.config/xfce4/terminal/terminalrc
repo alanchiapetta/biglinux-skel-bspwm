@@ -28,6 +28,6 @@ MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
 MiscRightClickAction=TERMINAL_RIGHT_CLICK_ACTION_CONTEXT_MENU
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
-FontName=Monospace 13
+FontName=MesloLGS NF 12
 ColorUseTheme=TRUE
 
