@@ -3,7 +3,7 @@
 # Gerenciar Brilho
 
 # Icons
-iDIR='~/.config/bspwm/dunst-icons'
+iDIR='/usr/share/icons/dunst-icons'
 
 # Graphics card
 CARD=`ls /sys/class/backlight | head -n 1`

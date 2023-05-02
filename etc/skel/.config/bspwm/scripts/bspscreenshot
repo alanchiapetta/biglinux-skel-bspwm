@@ -14,7 +14,7 @@ fi
 
 # notify and view screenshot
 notify_view () {
-	notify_cmd_shot='dunstify -u low -h string:x-dunst-stack-tag:obscreenshot -i ~/.config/bspwm/dunst-icons/picture.png'
+	notify_cmd_shot='dunstify -u low -h string:x-dunst-stack-tag:obscreenshot -i /usr/share/icons/dunst-icons/picture.png'
 	${notify_cmd_shot} "Copiado para área de transferência."
 	paplay ~/.config/bspwm/assets/screenshot.mp3 &>/dev/null &
 	viewnior ${dir}/"$file"
@@ -33,7 +33,7 @@ copy_shot () {
 # countdown
 countdown () {
 	for sec in `seq $1 -1 1`; do
-		dunstify -t 1000 -h string:x-dunst-stack-tag:screenshottimer -i ~/.config/bspwm/dunst-icons/timer.png "Tirando print em : $sec"
+		dunstify -t 1000 -h string:x-dunst-stack-tag:screenshottimer -i /usr/share/icons/dunst-icons/timer.png "Tirando print em : $sec"
 		sleep 1
 	done
 }
