@@ -3,7 +3,7 @@
 # Script para gerenciar volume
 
 # Icones
-iDIR='~/.config/bspwm/dunst-icons'
+iDIR='/usr/share/icons/dunst-icons'
 notify_cmd='dunstify -u low -h string:x-dunst-stack-tag:obvolume'
 
 # Pegar Volume
