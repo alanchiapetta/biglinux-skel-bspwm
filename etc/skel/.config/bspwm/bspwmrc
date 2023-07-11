@@ -1,135 +1,70 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-
-## Geral ---------------------------------------------------#
-
-## Bspwm - diretório de configuração
+# Diretório do BSPWM
 BSPDIR="$HOME/.config/bspwm"
 
-## Exporta bspwm/bin para PATH
+# Exporta Scripts e .local/bin para PATH
 export PATH="${PATH}:$BSPDIR/scripts"
 
-## Roda aplicações em java applications sem problemas
+# "Desbuga" aplicações em JAVA
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
-## Configurações --------------------------------------------#
 
-## Gerenciar Áreas de trabalho
-workspaces() {
-	name=1
-	for monitor in `bspc query -M`; do
-		#bspc monitor ${monitor} -n "$name" -d '1' '2' '3' '4' '5' '6' '7' '8'
-		#bspc monitor ${monitor} -n "$name" -d 'A' 'B' 'C' 'D' 'E' 'F' 'G' 'H'
-		#bspc monitor ${monitor} -n "$name" -d 'I' 'II' 'III' 'IV' 'V' 'VI' 'VII' 'VIII'
-		bspc monitor ${monitor} -n "$name" -d 'terminal' 'web' 'files' 'code' 'to-do' 'docs' 'social' 'media' 'games' 'system'
-		let name++
-	done
-}
-workspaces
+bspc config border_width         1.0
+bspc config window_gap           5
+bspc config split_ratio          0.50
+bspc config bottom_padding	 	 0
+bspc config top_padding		 	 0
 
-## Configurações BSPWM
-bspc config border_width 1.5
-bspc config window_gap 8
-bspc config split_ratio 0.52
-bspc config bottom_padding 0
-bspc config top_padding 0
+bspc config focused_border_color 	#81a1c1
+bspc config normal_border_color 	#0e1415
+bspc config active_border_color 	#31363b
+bspc config presel_feedback_color 	##31363b
 
-bspc config focused_border_color #81a1c1
-bspc config normal_border_color #2e3440
-bspc config active_border_color #b48ead
-bspc config presel_feedback_color #a3be8c
+bspc config borderless_monocle   	true
+bspc config gapless_monocle      	true
+bspc config paddingless_monocle	 	true
+bspc config single_monocle	 		false
+bspc config focus_follows_pointer	true
+bspc config presel_feedback			true
 
-bspc config borderless_monocle true
-bspc config gapless_monocle true
-bspc config paddingless_monocle true
-bspc config single_monocle false
-bspc config focus_follows_pointer true
-bspc config presel_feedback true
-
-## Gerencia todas as janelas das sessões anteriores
+# Gerencia janelas de sessões anteriores
 bspc wm --adopt-orphans
 
-## Regras de Janelas ----------------------------------------------#
-
-# Remove todas as regras anteriores
+# Remove regras anteriores
 bspc rule -r *:*
 
-## 1 > terminal 
-bspc rule -a Alacritty desktop='^1' follow=on focus=on
-
-## 2 > web 
-bspc rule -a firefox desktop='^2' follow=on focus=on
-bspc rule -a google-chrome desktop='^2' follow=on focus=on
-
-## 3 > files 
-
-## 4 > code 
-
-## 5 > To-do 
-
-## 6 > docs
-
-## 7 > social
-
-## 8 > media 
-bspc rule -a cmus desktop='^8' follow=on focus=on
-
-## 9 > games
-
-## 10 > system 
-bspc rule -a GParted desktop='^10' follow=on focus=on
-declare -a settings=(Lxappearance Lxtask Lxrandr Arandr \
-System-config-printer.py Pavucontrol Exo-helper-1 \
-Xfce4-power-manager-settings)
-for i in ${settings[@]}; do
-   bspc rule -a $i desktop='^10' state=floating follow=on focus=on; done
-
-## Aplicativos sempre em modo Floating
-declare -a floating=(alacritty-float Thunar Onboard Yad 'Firefox:Places' \
-Viewnior feh Nm-connection-editor gnome-calculator)
+# Apps sempre em modo floating
+declare -a floating=(kitty-float Lxappearance Arandr Pavucontrol Exo-helper-1 Xfce4-power-manager-settings Yad Onboard 'Firefox:Places' Viewnior feh Nm-connection-editor gnome-calculator)
 for i in ${floating[@]}; do
-   bspc rule -a $i state=floating follow=on focus=on; done
+	bspc rule -a $i state=floating follow=on focus=on; done
 
 
+# Matar o que está em execução
+killall -9 xfce4-power-manager bspc ksuperkey
 
-## Autostart -------------------------------------------------#
+# Autostart
 
-# Matar pacotes que estão em execução
-killall -9 sxhkd dunst ksuperkey xfce4-power-manager bspc polybar
+pgrep -x sxhkd > /dev/null || sxhkd -c ~/.config/bspwm/sxhkdrc &
 
-# polkit agent
 if [[ ! `pidof polkit-gnome-authentication-agent-1` ]]; then
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 fi
 
-# Executar polybar
-~/.config/bspwm/polybar/launch.sh
-
-# Iniciar numlockx
-numlockx on
-
-# Executar daemon de atalhos
-sxhkd -c "$BSPDIR"/sxhkdrc &
-
-# Habilitar tecla Super para os Menus
 ksuperkey -e 'Super_L=Alt_L|F1' &
 ksuperkey -e 'Super_R=Alt_L|F1' &
-
-# Habilitar gerenciador de energia
-xfce4-power-manager &
-
-# Ajustar cursor (sem isso o cursor fica com o formato de 'X')
+# bigbashview -w fixed -n "Atalhos BSPWM" -t gtk -s 900x900 $BSPDIR/atalhos/index.html & 
 xsetroot -cursor_name left_ptr
+numlockx on
+xfce4-power-manager &
+random_wallpaper
+bspcomp
+bspdunst
+bspfloat &
+bspbar
 
-# Restaurar o Wallpaper
-# feh --bg-fill /usr/share/backgrounds/biglinux-catppuccin.jpg
-nitrogen --restore
 
-# Iniciar scripts BSPWM
-bspcomp #Compositor Picom
-bspdunst #Notificações Dunst
-bspfloat & #Alacritty (Float, Normal e Fullscreen)
 
-#Atalhos
-bigbashview -w fixed -n "atalhos" -t gtk -s 900x900 $BSPDIR/atalhos/index.html & 
+

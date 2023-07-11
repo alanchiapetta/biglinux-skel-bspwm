@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Lista todos os arquivos de imagem na pasta "/usr/share/wallpapers" e armazena-os em uma matriz
+wallpapers=("/usr/share/wallpapers"/*)
+
+# Obtém o número total de wallpapers disponíveis
+num_wallpapers=${#wallpapers[@]}
+
+# Gera um índice aleatório para selecionar um wallpaper da matriz
+random_index=$((RANDOM % num_wallpapers))
+
+# Obtém o caminho completo do wallpaper aleatório
+random_wallpaper=${wallpapers[random_index]}
+
+# Define o wallpaper usando o comando "feh"
+feh --bg-fill "$random_wallpaper"

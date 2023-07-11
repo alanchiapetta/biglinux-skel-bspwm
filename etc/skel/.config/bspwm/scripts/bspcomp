@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Diretório do BSPWM
 DIR="$HOME/.config/bspwm"
@@ -10,4 +10,4 @@ killall -q picom
 while pgrep -u $UID -x picom >/dev/null; do sleep 1; done
 
 # Executar picom
-picom --config "$DIR"/picom.conf &
+picom &

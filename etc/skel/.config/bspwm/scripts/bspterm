@@ -1,19 +1,21 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 ##
-# Executar Alacritty com a configuração do BSPWM
+# Executar Kitty com a configuração do BSPWM
 
 # Diretório do BSPWM
 DIR="$HOME/.config/bspwm"
-CONFIG="$DIR/alacritty/alacritty.yml"
+# Arquivo de configuração Kitty
+CONFIG="$DIR/kitty/kitty.conf"
 
 if [ "$1" == "--float" ]; then
-	alacritty --class 'alacritty-float,alacritty-float' --config-file "$CONFIG"
+	kitty --class 'kitty-float' -c "$CONFIG"
 elif [ "$1" == "--full" ]; then
-	alacritty --class 'Fullscreen,Fullscreen' --config-file "$CONFIG" \
-			  -o window.startup_mode=fullscreen \
-			  window.padding.x=30 window.padding.y=30 \
-			  window.opacity=0.95 font.size=16
+	kitty --class 'Fullscreen' -c "$CONFIG" \
+			  --start-as=fullscreen \
+			  -o background_opacity=0.95 \
+			  -o font_size=16.0 
+	
 else
-	alacritty --config-file "$CONFIG"
+	kitty -c "$CONFIG"
 fi

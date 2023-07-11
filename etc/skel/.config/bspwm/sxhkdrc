@@ -1,11 +1,7 @@
 
 ##---------- Atalhos para BSPWM----------##
 
-# Atalhos
-super + shift + k
-  bigbashview -w fixed -n "atalhos" -t gtk -s 900x900 ~/.config/bspwm/atalhos/index.html
-
-# Terminal (alacritty)
+# Terminal (kitty)
 super + Return
 	bspterm
 
@@ -17,48 +13,40 @@ super + shift + Return
 super + alt + Return
 	bspterm --full
 
-##---------- Rofi & Menus ----------##
-
-# Rofi (Launcher)
-alt + F1
-	~/.config/bspwm/rofi/bin/launcher
-
-# Rofi (Powermenu)
-super + x
-	~/.config/bspwm/rofi/bin/powermenu
-
-# Rofi (Screenshot)
-super + s
-	~/.config/bspwm/rofi/bin/screenshot
-
-# Rofi (Janelas abertas)
-super + w
-	rofi -show window
+##---------- Menus ----------##
 
 # Dmenu
 super + d
 	dmenu_run
+	
+super + x
+	menu_shutdown
+	
+super + s
+	menu_screenshot
+	
+alt + F1
+	menu_apps
+	
 
 ##---------- Programas ----------##
 
+# Tela de Atalhos
+super + shift + k
+  bigbashview -w fixed -n "Atalhos BSPWM" -t gtk -s 900x900 ~/.config/bspwm/atalhos/index.html
+
 # Executar programas
-super + shift + {f,w,e,m}
-	{pcmanfm,firefox,geany,alacritty --class=cmus -e cmus}
+super + shift + {f,b,e}
+	{pcmanfm,brave,geany}
 
 # Programas Cli
-ctrl + alt + {r,h}
-	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {ranger,htop}
-
-ctrl + alt + v 
-  alacritty --class=nvim --config-file ~/.config/bspwm/alacritty/alacritty.yml -e nvim
+ctrl + alt + {f,s,m,e}
+	kitty -c ~/.config/bspwm/kitty/kitty.conf -e {ranger,htop,cmus,nvim}
 
 # Color Picker
 super + p
 	bspcolorpicker
-
-# Lockscreen
-ctrl + alt + l
-    betterlockscreen --lock dimblur
+	
 
 ##---------- Atalhos de Sistema ----------##
 
@@ -99,7 +87,6 @@ XF86Audio{Mute,MicMute}
 	
 # Music control
 XF86Audio{Next,Prev,Play,Stop}
-# MUDAR PARA CMUS
 
 ##---------- Bspwm ----------##
 

@@ -1,0 +1,9 @@
+; BIGLINUX DARK COLORS
+[colors]
+background = #20242d
+background-alt = #0e1415 
+foreground = #f9fafb
+primary = #ffce45
+secondary = #d65d0e
+alert = #c01c28
+disabled = #a89984

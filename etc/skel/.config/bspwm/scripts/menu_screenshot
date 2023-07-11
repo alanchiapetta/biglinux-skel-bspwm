@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Opções de screenshot
+options=("Agora" "Em 5 segundos" "Em 10 segundos" "Janela" "Área retangular")
+
+# Exibe o menu usando dmenu
+choice=$(printf '%s\n' "${options[@]}" | dmenu -l 10 -p "Selecione uma opção:")
+
+# Verifica a opção selecionada e executa o script bspscreenshot com a opção correspondente
+case $choice in
+    "Agora")
+        bspscreenshot --agora
+        ;;
+    "Em 5 segundos")
+        bspscreenshot --em5
+        ;;
+    "Em 10 segundos")
+        bspscreenshot --em10
+        ;;
+    "Janela")
+        bspscreenshot --janela
+        ;;
+    "Área retangular")
+        bspscreenshot --area
+        ;;
+    *)
+        echo "Opção inválida."
+        ;;
+esac
