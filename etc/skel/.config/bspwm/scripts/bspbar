@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Finalizar outras instâncias da Polybar
+killall -q polybar
+
+# Iniciar Polybar
+polybar -c ~/.config/bspwm/polybar/config &
+echo "Polybar iniciada..."

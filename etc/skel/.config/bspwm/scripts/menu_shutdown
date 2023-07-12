@@ -1,0 +1,14 @@
+#!/bin/bash
+
+choice=$(echo -e "Desligar\nReiniciar" | dmenu -l 10 -p "Escolha uma opção:")
+
+case "$choice" in
+    "Desligar") 
+        systemctl poweroff
+        ;;
+    "Reiniciar")
+        systemctl reboot
+        ;;
+    *)
+        ;;
+esac

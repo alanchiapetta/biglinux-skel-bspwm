@@ -1,0 +1,8 @@
+#!/bin/bash
+
+apps_dir="/usr/share/applications" # Diretório onde estão os arquivos .desktop dos aplicativos
+choice=$(ls $apps_dir | sed 's/\.desktop$//' | dmenu -l 10 -p "Escolha um aplicativo:")
+
+if [[ -n $choice ]]; then
+    exec $(grep -m 1 "^Exec" "$apps_dir/$choice.desktop" | sed 's/^Exec=//' | sed 's/%.//g')
+fi

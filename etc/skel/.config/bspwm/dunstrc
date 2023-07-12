@@ -21,11 +21,11 @@ horizontal_padding = 15
 text_icon_padding = 0
 frame_width = 1
 gap_size = 0
-frame_color = "#89B4FA"
+frame_color = "#2ec27e"
 separator_color = frame
 sort = yes
 idle_threshold = 120
-font = Iosevka Custom 10
+font = JetBrainsMono Nerd Font 11
 line_height = 1
 markup = full
 format = %s\n%b
@@ -53,17 +53,17 @@ class = Dunst
 
 [urgency_low]
 timeout = 2
-background = "#1E1E2E"
-foreground = "#CDD6F4"
+background = "#141b1e"
+foreground = "#f1f2dd""
 
 [urgency_normal]
 timeout = 3
-background = "#1E1E2E"
-foreground = "#CDD6F4"
+background = "#141b1e"
+foreground = "#f1f2dd"
 
 [urgency_critical]
 timeout = 0
-background = "#1E1E2E"
-foreground = "#CDD6F4"
-frame_color = "#FAB387"
+background = "#141b1e"
+foreground = "#f1f2dd"
+frame_color = "#2ec27e"
 
