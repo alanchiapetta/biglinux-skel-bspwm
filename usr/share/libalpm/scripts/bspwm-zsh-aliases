@@ -1,0 +1,5 @@
+#!/bin/bash
+echo '# User aliases
+if [[ -e ~/.bash_aliases ]]; then
+	source ~/.bash_aliases
+fi' >> $HOME/.zshrc
