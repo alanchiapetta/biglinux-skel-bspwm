@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Caminho para o arquivo onde o caminho do wallpaper selecionado foi salvo
+wallpaper_file=~/.config/bspwm/last_wallpaper
+
+# Verifica se o arquivo existe e contém um caminho válido
+if [ -f "$wallpaper_file" ] && [ -s "$wallpaper_file" ] && [ -e "$(cat "$wallpaper_file")" ]; then
+    # Obtém o caminho do wallpaper do arquivo
+    wallpaper_path=$(cat "$wallpaper_file")
+
+    # Define o wallpaper usando o comando "feh"
+    feh --bg-fill "$wallpaper_path"
+else
+    # Se o arquivo não existe ou está vazio, define um wallpaper padrão
+    feh --bg-fill "/usr/share/wallpapers/penguin purple6.avif"
+fi
+

@@ -12,5 +12,12 @@ random_index=$((RANDOM % num_wallpapers))
 # Obtém o caminho completo do wallpaper aleatório
 random_wallpaper=${wallpapers[random_index]}
 
+# Caminho para o arquivo onde vamos armazenar o caminho do wallpaper selecionado
+wallpaper_file=~/.config/bspwm/last_wallpaper
+
+# Salva o caminho do wallpaper atual no arquivo
+echo "$random_wallpaper" > "$wallpaper_file"
+
 # Define o wallpaper usando o comando "feh"
 feh --bg-fill "$random_wallpaper"
+
