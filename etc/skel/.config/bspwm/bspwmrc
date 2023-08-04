@@ -59,7 +59,8 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 xsetroot -cursor_name left_ptr
 numlockx on
 xfce4-power-manager &
-random_wallpaper
+# random_wallpaper
+set_wallpaper
 bspcomp
 bspdunst
 bspfloat &
